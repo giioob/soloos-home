@@ -326,7 +326,7 @@ export default function Home() {
                 </div>
                 <div className="contact-row">
                   <span className="t-meta">公众号</span>
-                  <span>Underground</span>
+                  <span>UNDER风GROUND</span>
                 </div>
                 <div className="contact-row">
                   <span className="t-meta">微信</span>
