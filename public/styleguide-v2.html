@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SoloOS Home · Style v2 (Startup Framework 风)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo-deep: #2D1F70;
+    --indigo: #3B2A9F;
+    --indigo-light: #5340C4;
+    --indigo-soft: #ECE8FB;
+    --teal: #1ABC9C;
+    --teal-hover: #14A085;
+    --coral: #FF6B8B;
+    --gold: #FFD166;
+    --white: #FFFFFF;
+    --gray-50: #F8F9FB;
+    --gray-100: #EEF1F6;
+    --gray-300: #C8CDD8;
+    --gray-600: #6B7280;
+    --gray-800: #2A2D3A;
+    --ink: #1A1D2E;
+    --shadow-sm: 0 1px 3px rgba(45,31,112,0.08);
+    --shadow-md: 0 8px 24px rgba(45,31,112,0.12);
+    --shadow-lg: 0 24px 48px rgba(45,31,112,0.18);
+  }
+  *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ============= NAV ============= */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:50;
+    padding: 18px 48px;
+    background: rgba(45,31,112,0.85);
+    backdrop-filter: blur(16px);
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .logo { color: var(--white); font-weight:800; font-size:18px; letter-spacing:.04em; }
+  .logo span { color: var(--teal); }
+  .nav-links { display:flex; gap:32px; align-items:center; }
+  .nav-links a { color: rgba(255,255,255,0.85); text-decoration:none; font-size:14px; font-weight:500; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .btn-pill {
+    display:inline-block; padding:10px 22px; border-radius:999px;
+    background: var(--teal); color: var(--white); text-decoration:none;
+    font-size:14px; font-weight:600; transition: all .2s;
+    border: none; cursor: pointer;
+  }
+  .btn-pill:hover { background: var(--teal-hover); transform: translateY(-1px); box-shadow: var(--shadow-md);}
+  .btn-pill-light {
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .btn-pill-light:hover { background: rgba(255,255,255,0.2); }
+
+  /* ============= HERO ============= */
+  .hero {
+    min-height: 720px;
+    background:
+      radial-gradient(circle at 70% 20%, rgba(255,107,139,0.4) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(26,188,156,0.3) 0%, transparent 50%),
+      linear-gradient(135deg, #2D1F70 0%, #3B2A9F 50%, #5340C4 100%);
+    padding: 160px 48px 120px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 32px 32px;
+    opacity: .35;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: 60px; font-weight: 800; line-height: 1.1;
+    color: var(--white); margin-bottom: 24px; letter-spacing: -0.02em;
+  }
+  .hero h1 em {
+    color: var(--gold); font-style: normal;
+    background: linear-gradient(135deg, #FFD166 0%, #FF6B8B 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { color: rgba(255,255,255,0.8); font-size: 19px; margin-bottom: 36px; max-width: 480px; }
+  .hero-cta { display:flex; gap: 14px; flex-wrap:wrap; }
+
+  /* glass card right side */
+  .glass-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+  }
+  .glass-card h3 { color: var(--white); font-size:14px; font-weight:600; letter-spacing:.1em; text-transform: uppercase; margin-bottom:24px; opacity:.7; }
+  .stat-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+  .stat-cell {
+    background: rgba(255,255,255,0.06); border-radius:12px;
+    padding: 20px; border:1px solid rgba(255,255,255,0.08);
+  }
+  .stat-num { color: var(--teal); font-size: 32px; font-weight: 800; letter-spacing:-.02em; }
+  .stat-label { color: rgba(255,255,255,0.7); font-size: 13px; margin-top:4px; }
+
+  /* ============= SECTION ============= */
+  section.block { padding: 120px 48px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display:inline-block; font-size:13px; font-weight:600; letter-spacing:.15em;
+    color: var(--teal); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .section-title { font-size:44px; font-weight:800; letter-spacing:-.02em; line-height:1.15; max-width:720px; margin-bottom:16px; }
+  .section-desc { font-size:18px; color: var(--gray-600); max-width: 640px; margin-bottom: 64px; }
+
+  /* WORKS GRID */
+  .works-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:24px; }
+  .work-card {
+    background: var(--white); border-radius: 20px; overflow:hidden;
+    box-shadow: var(--shadow-sm); transition: all .3s;
+    border: 1px solid var(--gray-100);
+  }
+  .work-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .work-cover { height: 220px; display:flex; align-items:center; justify-content:center; font-size:60px; }
+  .cover-1 { background: linear-gradient(135deg, #FFE0E5 0%, #FFB8C8 100%); }
+  .cover-2 { background: linear-gradient(135deg, #D9E8FF 0%, #A4C7FF 100%); }
+  .cover-3 { background: linear-gradient(135deg, #FFF1C9 0%, #FFD166 100%); }
+  .cover-4 { background: linear-gradient(135deg, #DAFFE4 0%, #1ABC9C 100%); }
+  .work-meta { padding: 24px; }
+  .work-meta h4 { font-size: 20px; font-weight: 700; margin-bottom:6px; }
+  .work-meta p { font-size: 14px; color: var(--gray-600); }
+
+  /* PRICING */
+  .pricing-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; }
+  .price-card {
+    background: var(--white); border-radius: 20px; padding: 40px 32px;
+    border: 1px solid var(--gray-100); transition: all .3s; position: relative;
+  }
+  .price-card.featured {
+    background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-light) 100%);
+    color: var(--white); transform: scale(1.04);
+    box-shadow: var(--shadow-lg);
+  }
+  .price-card.featured .price-name,
+  .price-card.featured .price-feat { color: var(--white); }
+  .price-card.featured .price-num { color: var(--gold); }
+  .price-name { font-size: 14px; letter-spacing: .15em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 16px; font-weight:600; }
+  .price-num { font-size: 56px; font-weight: 800; letter-spacing: -.03em; }
+  .price-num small { font-size: 18px; font-weight: 500; opacity: .7; }
+  .price-features { list-style:none; margin: 24px 0 32px; }
+  .price-feat { font-size: 15px; padding: 8px 0; color: var(--gray-600); }
+  .price-feat::before { content:'✓'; color: var(--teal); margin-right: 10px; font-weight:700; }
+  .price-card.featured .price-feat::before { color: var(--gold); }
+
+  /* TESTIMONIAL */
+  .test-section {
+    background: linear-gradient(135deg, var(--indigo-deep) 0%, var(--indigo) 100%);
+    color: var(--white);
+    border-radius: 24px; padding: 80px 64px;
+  }
+  .test-section .section-title { color: var(--white); }
+  .test-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+  .test-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 32px;
+    backdrop-filter: blur(12px);
+  }
+  .test-card p { font-size:17px; line-height:1.7; margin-bottom: 20px; }
+  .test-author { display:flex; align-items:center; gap:14px; }
+  .test-avatar {
+    width:48px; height:48px; border-radius:50%;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--coral) 100%);
+  }
+  .test-author strong { display:block; font-size:14px; }
+  .test-author span { font-size:13px; opacity:.7; }
+
+  /* FOOTER */
+  footer {
+    padding: 64px 48px; background: var(--gray-50); color: var(--gray-600); font-size:14px;
+    text-align:center; border-top:1px solid var(--gray-100);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display:none; }
+    .hero { padding: 120px 20px 80px; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .hero h1 { font-size: 40px; }
+    section.block { padding: 80px 20px; }
+    .section-title { font-size: 32px; }
+    .works-grid, .pricing-grid, .test-grid { grid-template-columns: 1fr; }
+    .price-card.featured { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Solo<span>OS</span></div>
+  <div class="nav-links">
+    <a href="#">业务</a>
+    <a href="#">作品</a>
+    <a href="#">资料库</a>
+    <a href="#">日记</a>
+    <a href="#">关于</a>
+    <button class="btn-pill">联系我 →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>用 AI，<em>把一个人</em><br>变成一支团队。</h1>
+      <p>零代码小白用 90 天造一人公司，公开记录每一步——包括失败。</p>
+      <div class="hero-cta">
+        <button class="btn-pill">开始阅读 →</button>
+        <button class="btn-pill btn-pill-light">查看作品</button>
+      </div>
+    </div>
+    <div class="glass-card">
+      <h3>// PROGRESS</h3>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="stat-num">90</div><div class="stat-label">裸辞天数倒计时</div></div>
+        <div class="stat-cell"><div class="stat-num">12</div><div class="stat-label">已完成案例</div></div>
+        <div class="stat-cell"><div class="stat-num">38</div><div class="stat-label">已发布 Prompt</div></div>
+        <div class="stat-cell"><div class="stat-num">5</div><div class="stat-label">小工具</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="block">
+  <div class="container">
+    <div class="section-tag">// OUR WORKS</div>
+    <h2 class="section-title">过往作品 & 实战案例</h2>
+    <p class="section-desc">每一个项目都是公开的记录，从需求到交付的全过程。</p>
+    <div class="works-grid">
+      <div class="work-card"><div class="work-cover cover-1">🎨</div><div class="work-meta"><h4>SOLO OS 商学院</h4><p>AI 实战培训官网，3 天上线</p></div></div>
+      <div class="work-card"><div class="work-cover cover-2">🤖</div><div class="work-meta"><h4>AI 客服工作流</h4><p>用 Coze + n8n + Claude 给客户搭建</p></div></div>
+      <div class="work-card"><div class="work-cover cover-3">📚</div><div class="work-meta"><h4>Prompt 库</h4><p>200+ 实战 prompt，分类可复用</p></div></div>
+      <div class="work-card"><div class="work-cover cover-4">🛠️</div><div class="work-meta"><h4>小红书标题生成器</h4><p>免费小工具，已被使用 5000+ 次</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" style="background: var(--gray-50);">
+  <div class="container">
+    <div class="section-tag">// MEMBERSHIP</div>
+    <h2 class="section-title">三档会员，按需选择</h2>
+    <p class="section-desc">从免费资料到一对一咨询，按你需要的深度走。</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">FREE</div>
+        <div class="price-num">¥0</div>
+        <ul class="price-features">
+          <li class="price-feat">所有 Prompt 库</li>
+          <li class="price-feat">公开 Journey 日记</li>
+          <li class="price-feat">基础工具</li>
+        </ul>
+        <button class="btn-pill" style="background:var(--gray-300); width:100%;">已包含</button>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">PRO 会员</div>
+        <div class="price-num">¥99<small>/月</small></div>
+        <ul class="price-features">
+          <li class="price-feat">深度方法论文章</li>
+          <li class="price-feat">高级小工具解锁</li>
+          <li class="price-feat">月度直播答疑</li>
+          <li class="price-feat">社群权限</li>
+        </ul>
+        <button class="btn-pill" style="background:var(--gold); color:var(--ink); width:100%;">加入 PRO →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-name">1V1</div>
+        <div class="price-num">¥1999<small>/次</small></div>
+        <ul class="price-features">
+          <li class="price-feat">90 分钟一对一</li>
+          <li class="price-feat">业务诊断 + 方案</li>
+          <li class="price-feat">3 次邮件答疑</li>
+        </ul>
+        <button class="btn-pill" style="width:100%;">预约咨询</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block">
+  <div class="container">
+    <div class="test-section">
+      <div class="section-tag" style="color: var(--gold);">// TESTIMONIALS</div>
+      <h2 class="section-title">他们都在用 SoloOS</h2>
+      <div class="test-grid">
+        <div class="test-card">
+          <p>"跟着 Hong 的 Prompt 库改了我的小红书标题，单条爆了 50 万阅读。第一次觉得 AI 真的离我这么近。"</p>
+          <div class="test-author">
+            <div class="test-avatar"></div>
+            <div><strong>Lily Wang</strong><span>小红书博主</span></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <p>"零代码也能用 Claude 给团队搭工作流，省下来的不只是钱，是我每天加班的两小时。"</p>
+          <div class="test-author">
+            <div class="test-avatar"></div>
+            <div><strong>陈先生</strong><span>电商运营总监</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong style="color:var(--ink);">SoloOS Home · Style v2 (Startup Framework 风)</strong></p>
+  <p style="margin-top:8px;">基于你给的 45 张参考截图风格生成 · 2026-05-03</p>
+</footer>
+
+</body>
+</html>

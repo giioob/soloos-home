@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SoloOS Home · Design Tokens v0.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* === CLAUDE 桌面端配色 (extracted from screenshots) === */
+  :root[data-theme="light"] {
+    --bg-base: #F4EFE6;        /* 页面奶油暖白 */
+    --bg-elevated: #FCFAF6;    /* 输入框/卡片浮起白 */
+    --bg-subtle: #EDE7DA;      /* 弱化区 (sidebar tinge) */
+    --text-primary: #2C2620;   /* 主文字 深咖（不是纯黑） */
+    --text-secondary: #6B6359; /* 次文字 暖灰 */
+    --text-muted: #A09689;     /* 弱化文字 */
+    --border: #E5DFD2;         /* 分割线 */
+    --border-strong: #D4CCBB;
+    --accent: #D97757;         /* Claude 焦糖珊瑚 (那个 ✻ 的颜色) */
+    --accent-hover: #C85F3D;
+    --accent-soft: #FBE8DD;
+    --code-bg: #EDE7DA;
+  }
+  :root[data-theme="dark"] {
+    --bg-base: #262220;        /* 页面 深暖咖 */
+    --bg-elevated: #2F2A26;    /* 输入框/卡片浮起 */
+    --bg-subtle: #2A2622;
+    --text-primary: #E8DDC9;   /* 主文字 暖象牙 */
+    --text-secondary: #A89C8A; /* 次文字 */
+    --text-muted: #6F665B;
+    --border: #3A332D;
+    --border-strong: #4A4239;
+    --accent: #E8896A;         /* 暗模式偏亮一点的珊瑚 */
+    --accent-hover: #F2A485;
+    --accent-soft: #3F2C22;
+    --code-bg: #2A2622;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  /* === Claude 风字体栈 === */
+  /* Sans (Styrene 替代): Inter + 中文 PingFang SC */
+  /* Serif (Tiempos 替代): Fraunces + 中文 Noto Serif SC (思源宋体) */
+  /* Mono: JetBrains Mono */
+  body {
+    font-family: 'Inter', 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', system-ui, sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .serif {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', 'STSong', Georgia, serif;
+    font-optical-sizing: auto;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 64px 32px 120px; }
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 48px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar h1 {
+    font-size: 14px; font-weight: 500; color: var(--text-secondary);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .toggle {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    color: var(--text-primary); padding: 8px 16px; border-radius: 999px;
+    cursor: pointer; font-family: inherit; font-size: 13px;
+    transition: all 0.2s ease;
+  }
+  .toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  section { margin-bottom: 80px; }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 0.1em; margin-bottom: 16px;
+  }
+  h2.section-title {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+    font-optical-sizing: auto;
+    font-size: 36px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.015em;
+  }
+  .section-desc { color: var(--text-secondary); margin-bottom: 32px; max-width: 640px; }
+
+  /* Color Swatches */
+  .swatch-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .swatch {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
+  }
+  .swatch-color {
+    height: 88px; display: flex; align-items: flex-end; padding: 12px;
+  }
+  .swatch-color span {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    background: rgba(0,0,0,0.4); color: #fff; padding: 2px 6px; border-radius: 4px;
+  }
+  :root[data-theme="dark"] .swatch-color span { background: rgba(0,0,0,0.5); }
+  .swatch-meta { padding: 12px; }
+  .swatch-name { font-size: 13px; font-weight: 500; }
+  .swatch-token {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-muted); margin-top: 4px;
+  }
+
+  /* Typography */
+  .type-row {
+    display: grid; grid-template-columns: 160px 1fr;
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--text-muted); letter-spacing: 0.05em;
+  }
+  .t-display {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+    font-size: 64px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.08;
+    font-optical-sizing: auto;
+  }
+  .t-h1 {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+    font-size: 48px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.12;
+  }
+  .t-h2 { font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+  .t-h3 { font-size: 22px; font-weight: 600; }
+  .t-body { font-size: 17px; line-height: 1.7; }
+  .t-small { font-size: 14px; color: var(--text-secondary); }
+  .t-mono { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--accent); }
+  .t-serif {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+    font-size: 22px; font-style: italic; color: var(--text-secondary); font-weight: 500;
+  }
+
+  /* Components: Buttons */
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    padding: 10px 20px; border-radius: 8px; cursor: pointer;
+    transition: all 0.18s ease; border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #1F1E1D; }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent; color: var(--text-primary);
+    border-color: var(--border-strong);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-ghost { background: transparent; color: var(--text-secondary); }
+  .btn-ghost:hover { color: var(--accent); }
+
+  /* Card */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 16px; }
+  .card {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; transition: all 0.2s ease;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--accent); letter-spacing: 0.05em; margin-bottom: 12px;
+  }
+  .card-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .card-body { font-size: 14px; color: var(--text-secondary); }
+
+  /* Code block */
+  pre.code {
+    background: var(--code-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--text-primary); overflow-x: auto; line-height: 1.6;
+  }
+  .code .k { color: var(--accent); }
+  .code .c { color: var(--text-muted); font-style: italic; }
+
+  /* Hero preview */
+  .hero-preview {
+    background: var(--bg-base); border: 1px dashed var(--border-strong);
+    border-radius: 16px; padding: 80px 48px; text-align: left;
+  }
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--accent); letter-spacing: 0.1em; margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Fraunces', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+    font-optical-sizing: auto;
+    font-size: 64px; font-weight: 600; letter-spacing: -0.02em;
+    line-height: 1.08; margin-bottom: 24px; max-width: 760px;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); font-weight: 600; }
+  .hero-asterisk {
+    display:inline-block; color: var(--accent); font-size: 56px;
+    margin-right: 12px; line-height: 1; transform: translateY(-4px);
+  }
+  .hero-sub {
+    font-size: 19px; color: var(--text-secondary);
+    max-width: 560px; margin-bottom: 40px;
+  }
+
+  /* Spacing scale */
+  .space-grid { display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap; }
+  .space-item { text-align: center; }
+  .space-bar { background: var(--accent); width: 32px; }
+  .space-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 32px 16px 80px; }
+    .hero-title { font-size: 40px; }
+    .t-display { font-size: 40px; }
+    .t-h1 { font-size: 32px; }
+    .type-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topbar">
+    <h1>SoloOS Home · Design Tokens v0.1</h1>
+    <button class="toggle" onclick="toggleTheme()" id="themeBtn">🌙 切换暗色</button>
+  </header>
+
+  <!-- HERO PREVIEW -->
+  <section>
+    <div class="label">// 01 HERO PREVIEW (首页主视觉草图)</div>
+    <div class="hero-preview">
+      <div class="hero-tag">SOLOOS · 一人公司操作系统</div>
+      <h1 class="hero-title"><span class="hero-asterisk">✻</span>用 AI，<em>把一个人</em><br>变成一支团队。</h1>
+      <p class="hero-sub">零代码小白用 90 天造一人公司，公开记录每一步——包括失败。</p>
+      <div class="btn-row">
+        <button class="btn btn-primary">开始阅读 →</button>
+        <button class="btn btn-secondary">关于我</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section>
+    <div class="label">// 02 COLOR TOKENS (颜色变量)</div>
+    <h2 class="section-title">配色</h2>
+    <p class="section-desc">温暖米色基底，深咖文字，米黄强调色。亮暗双模式同一套语义 token，切换无缝。</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:var(--bg-base)"><span id="hex-bg">--bg-base</span></div><div class="swatch-meta"><div class="swatch-name">页面底色</div><div class="swatch-token">--bg-base</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--bg-elevated)"><span>--bg-elevated</span></div><div class="swatch-meta"><div class="swatch-name">卡片底色</div><div class="swatch-token">--bg-elevated</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--bg-subtle)"><span>--bg-subtle</span></div><div class="swatch-meta"><div class="swatch-name">弱化区</div><div class="swatch-token">--bg-subtle</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--text-primary)"><span>--text-primary</span></div><div class="swatch-meta"><div class="swatch-name">主文字</div><div class="swatch-token">--text-primary</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--text-secondary)"><span>--text-secondary</span></div><div class="swatch-meta"><div class="swatch-name">次文字</div><div class="swatch-token">--text-secondary</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--text-muted)"><span>--text-muted</span></div><div class="swatch-meta"><div class="swatch-name">弱化文字</div><div class="swatch-token">--text-muted</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--accent)"><span>--accent</span></div><div class="swatch-meta"><div class="swatch-name">强调色 · 焦糖珊瑚</div><div class="swatch-token">--accent</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--accent-soft)"><span>--accent-soft</span></div><div class="swatch-meta"><div class="swatch-name">强调底</div><div class="swatch-token">--accent-soft</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--border)"><span>--border</span></div><div class="swatch-meta"><div class="swatch-name">分割线</div><div class="swatch-token">--border</div></div></div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section>
+    <div class="label">// 03 TYPOGRAPHY (字体与字号)</div>
+    <h2 class="section-title">排版</h2>
+    <p class="section-desc">Inter 无衬线 + 思源黑体担当主力；JetBrains Mono 用在代码/Prompt 块；Noto Serif 衬线偶尔用于强调点缀（像 Claude 官网那种感觉）。</p>
+    <div>
+      <div class="type-row"><div class="type-meta">DISPLAY · 64/700</div><div class="t-display">用 AI，做更多。</div></div>
+      <div class="type-row"><div class="type-meta">H1 · 48/600</div><div class="t-h1">一人公司操作系统</div></div>
+      <div class="type-row"><div class="type-meta">H2 · 32/600</div><div class="t-h2">90 天裸辞日记</div></div>
+      <div class="type-row"><div class="type-meta">H3 · 22/600</div><div class="t-h3">最近在 build 什么</div></div>
+      <div class="type-row"><div class="type-meta">BODY · 17/400</div><div class="t-body">这是正文示例。零代码小白也能用 AI 做出可售卖的产品，关键不在技术，而在你愿不愿意把每一步公开出来。</div></div>
+      <div class="type-row"><div class="type-meta">SMALL · 14/400</div><div class="t-small">辅助文字、版本号、时间戳。</div></div>
+      <div class="type-row"><div class="type-meta">MONO · 14/400</div><div class="t-mono">$ bun dev — Ready in 379ms</div></div>
+      <div class="type-row"><div class="type-meta">SERIF · 22/italic</div><div class="t-serif">"代码和媒体是边际成本为零的杠杆。" — Naval</div></div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section>
+    <div class="label">// 04 BUTTONS</div>
+    <h2 class="section-title">按钮</h2>
+    <p class="section-desc">米黄实底主按钮 / 描边次按钮 / 文字幽灵按钮。圆角 8px。Hover 微微上浮 1px。</p>
+    <div class="btn-row">
+      <button class="btn btn-primary">主操作 →</button>
+      <button class="btn btn-secondary">次操作</button>
+      <button class="btn btn-ghost">幽灵按钮</button>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section>
+    <div class="label">// 05 CARDS</div>
+    <h2 class="section-title">卡片</h2>
+    <p class="section-desc">用于 Prompt 库、资料、案例、工具列表。Hover 时边框点亮成米黄色。</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-tag">PROMPT · 小红书</div>
+        <div class="card-title">爆款标题生成器 v2</div>
+        <div class="card-body">输入产品 + 受众，输出 5 条带钩子的标题，开箱即用。</div>
+      </div>
+      <div class="card">
+        <div class="card-tag">CASE · 服务案例</div>
+        <div class="card-title">3 天给客户搭建 AI 客服</div>
+        <div class="card-body">用 Coze + n8n + Claude，从需求到交付的全过程。</div>
+      </div>
+      <div class="card">
+        <div class="card-tag">JOURNEY · DAY 1</div>
+        <div class="card-title">第一次让 Next.js 跑起来</div>
+        <div class="card-body">零代码小白的 Day 1：装 bun、跑 dev server、看到第一个页面。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CODE BLOCK -->
+  <section>
+    <div class="label">// 06 CODE / PROMPT BLOCK</div>
+    <h2 class="section-title">代码 / Prompt 块</h2>
+    <p class="section-desc">Prompt 库和教程内容大量使用，等宽字体 + 弱化底色 + 米黄关键字。</p>
+<pre class="code"><span class="c"># 让 Claude 帮你写小红书爆款标题</span>
+<span class="k">role:</span> 你是小红书内容运营专家
+<span class="k">task:</span> 给以下产品生成 5 条标题
+<span class="k">rules:</span>
+  - 必须有钩子词（揭秘 / 实测 / 翻车）
+  - 控制在 20 字以内
+  - 至少包含 1 个 emoji
+<span class="k">product:</span> {{你的产品}}</pre>
+  </section>
+
+  <!-- SPACING -->
+  <section>
+    <div class="label">// 07 SPACING SCALE (间距)</div>
+    <h2 class="section-title">间距尺度</h2>
+    <p class="section-desc">4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 (px)。所有页面只用这 8 个值，确保节奏一致。</p>
+    <div class="space-grid">
+      <div class="space-item"><div class="space-bar" style="height:4px"></div><div class="space-label">4</div></div>
+      <div class="space-item"><div class="space-bar" style="height:8px"></div><div class="space-label">8</div></div>
+      <div class="space-item"><div class="space-bar" style="height:16px"></div><div class="space-label">16</div></div>
+      <div class="space-item"><div class="space-bar" style="height:24px"></div><div class="space-label">24</div></div>
+      <div class="space-item"><div class="space-bar" style="height:32px"></div><div class="space-label">32</div></div>
+      <div class="space-item"><div class="space-bar" style="height:48px"></div><div class="space-label">48</div></div>
+      <div class="space-item"><div class="space-bar" style="height:64px"></div><div class="space-label">64</div></div>
+      <div class="space-item"><div class="space-bar" style="height:96px"></div><div class="space-label">96</div></div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--border); padding-top:32px; color:var(--text-muted); font-size:13px;">
+    <p>SoloOS Home · Design Tokens v0.1 · 2026-05-03</p>
+    <p style="margin-top:8px;">点击右上角切换亮暗模式。这份文件可以直接被 Tailwind 配置文件引用。</p>
+  </footer>
+
+</div>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  function toggleTheme() {
+    const cur = root.getAttribute('data-theme');
+    const next = cur === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    btn.textContent = next === 'light' ? '🌙 切换暗色' : '☀️ 切换亮色';
+    localStorage.setItem('theme', next);
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    root.setAttribute('data-theme', saved);
+    btn.textContent = saved === 'light' ? '🌙 切换暗色' : '☀️ 切换亮色';
+  }
+</script>
+</body>
+</html>

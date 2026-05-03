@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Anthropic 官方 Prompt 教程",
+    "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
+    "source": "GitHub",
+    "category": "prompt",
+    "tags": ["prompt", "claude", "教程"],
+    "note": "Anthropic 官方互动 Notebook 教程，从 0 到精通。我自己也在跟着学。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Naval · 如何不靠运气致富",
+    "url": "https://nav.al/rich",
+    "source": "nav.al",
+    "category": "一人公司",
+    "tags": ["杠杆", "naval", "创业哲学"],
+    "note": "一人公司哲学的根源文档。代码 + 媒体 = 边际成本为零的杠杆——这一句改变了我对'工作'的理解。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Paul Jarvis · Company of One",
+    "url": "https://ofone.co/",
+    "source": "ofone.co",
+    "category": "一人公司",
+    "tags": ["书籍", "反增长"],
+    "note": "反对'公司必须增长'的最完整论证。Solo OS 哲学的精神原型。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Dan Koe · The Art of Focus",
+    "url": "https://thedankoe.com/",
+    "source": "thedankoe.com",
+    "category": "一人公司",
+    "tags": ["内容", "个人IP", "专注"],
+    "note": "Dan Koe 是一人媒体公司的活样板。他的网站本身就是个人 IP 站的范本。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Latent Space Podcast",
+    "url": "https://www.latent.space/",
+    "source": "latent.space",
+    "category": "AI 资讯",
+    "tags": ["播客", "AI 工程"],
+    "note": "AI 工程师视角的播客，每周一期，不水。比看推特爆款贴质量高十倍。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Claude Cookbook",
+    "url": "https://github.com/anthropics/anthropic-cookbook",
+    "source": "GitHub",
+    "category": "工具",
+    "tags": ["claude", "示例代码"],
+    "note": "Claude API 各种用法的现成示例。想做点什么之前，先来这里抄。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "Andrej Karpathy · Software 3.0",
+    "url": "https://karpathy.ai/zero-to-hero.html",
+    "source": "karpathy.ai",
+    "category": "AI 资讯",
+    "tags": ["andrej", "AI 入门", "深度"],
+    "note": "OpenAI 前研究员的免费课。零代码小白前期不必看代码部分，只看他对'AI 是什么'的几次演讲。",
+    "added": "2026-05-03"
+  },
+  {
+    "title": "openclaw101 · 7 天掌握 Claude",
+    "url": "https://github.com/mengjian-github/openclaw101",
+    "source": "GitHub",
+    "category": "prompt",
+    "tags": ["claude", "中文教程"],
+    "note": "中文 Claude 教程站。这个网站的视觉架构对我们影响很大——内容站怎么做，他们做了好的范本。",
+    "added": "2026-05-03"
+  }
+]
