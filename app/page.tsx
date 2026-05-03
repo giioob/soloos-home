@@ -316,32 +316,43 @@ export default function Home() {
               </p>
               <div className="contact-rows">
                 <div className="contact-row">
-                  <span className="t-meta">微信</span>
-                  <span>giioob_solo</span>
+                  <span className="t-meta">邮箱</span>
+                  <a
+                    href="mailto:lygrenhong@me.com"
+                    style={{ color: "var(--ink)" }}
+                  >
+                    lygrenhong@me.com
+                  </a>
                 </div>
                 <div className="contact-row">
                   <span className="t-meta">公众号</span>
-                  <span>SoloOS 实验室</span>
+                  <span>Underground</span>
                 </div>
                 <div className="contact-row">
-                  <span className="t-meta">邮箱</span>
-                  <span>hong@soloos.cn</span>
+                  <span className="t-meta">微信</span>
+                  <span style={{ color: "var(--ink-mute)" }}>稍后开放</span>
                 </div>
               </div>
             </div>
             <div className="contact-right">
-              <a href="#" className="contact-link">
+              <div
+                className="contact-link"
+                style={{ opacity: 0.55, pointerEvents: "none" }}
+              >
                 <div className="t-eyebrow">// 知识星球</div>
                 <h3>SoloOS · Build in Public</h3>
-                <p>每天一条进度 + 每周直播 ¥199/年</p>
-                <span className="ext">前往 ↗</span>
-              </a>
-              <a href="#" className="contact-link">
+                <p>每天一条进度 + 每周直播</p>
+                <span className="ext">筹备中</span>
+              </div>
+              <div
+                className="contact-link"
+                style={{ opacity: 0.55, pointerEvents: "none" }}
+              >
                 <div className="t-eyebrow">// 小报童</div>
                 <h3>一人公司方法论</h3>
-                <p>付费专栏，每周一更 ¥99/年</p>
-                <span className="ext">前往 ↗</span>
-              </a>
+                <p>付费专栏，每周一更</p>
+                <span className="ext">筹备中</span>
+              </div>
             </div>
           </div>
         </div>

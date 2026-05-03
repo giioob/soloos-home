@@ -39,7 +39,7 @@ export default function Footer() {
               <li><a href="#">小红书</a></li>
               <li><a href="#">即刻</a></li>
               <li><a href="#">X / Twitter</a></li>
-              <li><a href="#">GitHub</a></li>
+              <li><a href="https://github.com/giioob" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
           </div>
         </div>
