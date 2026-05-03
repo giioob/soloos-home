@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "About · SoloOS",
@@ -12,22 +13,59 @@ export default function AboutPage() {
           <div className="t-eyebrow">// ABOUT</div>
           <h1 className="t-h1">关于 Hong &amp; SoloOS</h1>
           <p>
-            零代码小白。正在裸辞 90 天用 AI 打造一人公司。
-            这一页正在写——先去看{" "}
-            <Link href="/journey" className="uline">
-              90 天日记
-            </Link>{" "}
-            或{" "}
-            <Link href="/" className="uline">
-              首页
-            </Link>
-            。
+            零代码小白。正在裸辞 90 天用 AI 打造一人公司，公开记录每一步——包括失败。
           </p>
         </div>
       </header>
+
       <section className="section">
         <div className="wrap-r">
-          <p className="t-body">这一页 Coming Soon。详细个人简介、时间线、核心价值观会在 V1 上线前补完。</p>
+          {/* 真照片代替之前的 ✻ 占位 */}
+          <div
+            className="avatar-frame"
+            style={{
+              width: 200,
+              height: 200,
+              borderRadius: "var(--r-md)",
+              overflow: "hidden",
+              border: "1px solid var(--ink-line)",
+              marginBottom: "var(--s-5)",
+            }}
+          >
+            <Image
+              src="/me/avatar.jpg"
+              alt="Hong / 任弘"
+              width={400}
+              height={400}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              priority
+            />
+          </div>
+
+          <p className="t-body" style={{ marginBottom: "var(--s-4)" }}>
+            <strong style={{ color: "var(--ink)" }}>任弘</strong> · 公众号{" "}
+            <a
+              className="uline"
+              href="https://mp.weixin.qq.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              UNDER风GROUND
+            </a>{" "}
+            主理人。
+          </p>
+
+          <p className="t-body">
+            这一页详细版正在写。先去{" "}
+            <Link href="/journey" className="uline">
+              Journey 看每天发生了什么
+            </Link>
+            ，或{" "}
+            <Link href="/#contact" className="uline">
+              扫码加我聊
+            </Link>
+            。
+          </p>
         </div>
       </section>
     </>

@@ -37,6 +37,29 @@ export const metadata: Metadata = {
   title: "SoloOS · 用 AI 把一个人变成一支团队",
   description:
     "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+  openGraph: {
+    title: "SoloOS · 用 AI 把一个人变成一支团队",
+    description:
+      "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+    url: "https://soloos-home.vercel.app",
+    siteName: "SoloOS",
+    images: [
+      {
+        url: "/me/underground-logo.png",
+        width: 1240,
+        height: 1240,
+        alt: "SoloOS · UNDER风GROUND",
+      },
+    ],
+    locale: "zh_CN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "SoloOS · 用 AI 把一个人变成一支团队",
+    description: "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+    images: ["/me/underground-logo.png"],
+  },
 };
 
 // 在客户端水合前先把 data-theme 设好，避免亮模式闪烁

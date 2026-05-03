@@ -698,6 +698,61 @@ ul { list-style: none; }
   .section-icon { width: 64px; }
 }
 
+/* ============================================================
+   QR 二维码组（Contact 区底部 5 张）
+   ============================================================ */
+.qr-strip {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--ink-line-soft);
+}
+.qr-strip-head {
+  margin-bottom: var(--s-4);
+}
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-3);
+}
+.qr-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--ink-line-soft);
+  border-radius: var(--r-sm);
+  padding: 12px;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.qr-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.qr-img-wrap {
+  background: #FFFFFF;     /* QR 必须白底 */
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qr-img-wrap img { max-width: 100%; height: auto; }
+.qr-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.qr-meta strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.qr-meta .t-meta { font-size: 11px; }
+
+/* 移动端：5 个 QR 改成 2 列网格 */
+@media (max-width: 720px) {
+  .qr-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ---------- Toast ---------- */
 .toast {
   position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(24px);

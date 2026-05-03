@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllDocs, type JourneyMeta, type PromptMeta } from "../lib/mdx";
 import { getAllResources } from "../lib/resources";
+import Image from "next/image";
 import {
   HeroIllustration,
   WorkIcon,
@@ -8,6 +9,15 @@ import {
   JourneyIcon,
   ContactIcon,
 } from "../components/Illustrations";
+
+// 5 个真实平台的二维码 —— 文件在 public/me/
+const QR_PLATFORMS = [
+  { name: "微信", file: "/me/qr-wechat.jpg", note: "聊真东西" },
+  { name: "公众号", file: "/me/qr-mp.jpg", note: "UNDER风GROUND" },
+  { name: "视频号", file: "/me/qr-shipinhao.jpg", note: "刷我的视频" },
+  { name: "小红书", file: "/me/qr-xiaohongshu.jpg", note: "图文 + 笔记" },
+  { name: "抖音", file: "/me/qr-douyin.jpg", note: "短视频" },
+];
 
 // 首页 —— 数据来自 content/ 文件夹，加新内容自动出现在首页
 export default function Home() {
@@ -353,6 +363,35 @@ export default function Home() {
                 <p>付费专栏，每周一更</p>
                 <span className="ext">筹备中</span>
               </div>
+            </div>
+          </div>
+
+          {/* —— 5 个平台二维码 —— */}
+          <div className="qr-strip reveal">
+            <div className="qr-strip-head">
+              <div className="t-eyebrow">// FOLLOW · 扫码关注</div>
+              <p className="t-meta" style={{ marginTop: 6 }}>
+                直接扫码，最快的"找到我"。
+              </p>
+            </div>
+            <div className="qr-grid">
+              {QR_PLATFORMS.map((p) => (
+                <div key={p.name} className="qr-card">
+                  <div className="qr-img-wrap">
+                    <Image
+                      src={p.file}
+                      alt={`${p.name} 二维码`}
+                      width={300}
+                      height={300}
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                    />
+                  </div>
+                  <div className="qr-meta">
+                    <strong>{p.name}</strong>
+                    <span className="t-meta">{p.note}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
