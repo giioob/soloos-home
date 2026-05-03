@@ -34,6 +34,7 @@ const notoSerifSCHref =
   "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://soloos.cc"),
   title: "SoloOS · 用 AI 把一个人变成一支团队",
   description:
     "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
     title: "SoloOS · 用 AI 把一个人变成一支团队",
     description:
       "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
-    url: "https://soloos-home.vercel.app",
+    url: "https://soloos.cc",
     siteName: "SoloOS",
     images: [
       {

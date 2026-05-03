@@ -2,7 +2,7 @@
 
 > 用 AI 把一个人变成一支团队。一个零代码小白用 90 天裸辞造一人公司的公开实验室。
 
-这是 [SoloOS](https://soloos-home.vercel.app) 的官网源码。**Build in public** —— 整个项目从 Day 1 就开源在这里。
+这是 [SoloOS](https://soloos.cc) 的官网源码。**Build in public** —— 整个项目从 Day 1 就开源在这里。
 
 ## 站点结构
 
