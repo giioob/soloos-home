@@ -1,6 +1,13 @@
 import Link from "next/link";
 import { getAllDocs, type JourneyMeta, type PromptMeta } from "../lib/mdx";
 import { getAllResources } from "../lib/resources";
+import {
+  HeroIllustration,
+  WorkIcon,
+  LibraryIcon,
+  JourneyIcon,
+  ContactIcon,
+} from "../components/Illustrations";
 
 // 首页 —— 数据来自 content/ 文件夹，加新内容自动出现在首页
 export default function Home() {
@@ -21,32 +28,37 @@ export default function Home() {
       {/* ======= HERO ======= */}
       <header className="hero">
         <div className="wrap">
-          <div className="hero-inner">
-            <div className="hero-eyebrow t-eyebrow reveal in">
-              // PERSONAL · BUILD IN PUBLIC · 2026
+          <div className="hero-grid">
+            <div className="hero-inner">
+              <div className="hero-eyebrow t-eyebrow reveal in">
+                // PERSONAL · BUILD IN PUBLIC · 2026
+              </div>
+              <h1 className="hero-title reveal in">
+                <span className="star-mark entry" aria-hidden="true">
+                  ✻
+                </span>
+                用 <span className="italic-em">AI</span>，<br />
+                把一个人 <span className="hero-slash">/</span> 变成一支团队。
+              </h1>
+              <p className="hero-sub reveal in">
+                零代码小白用 90 天造一人公司，公开记录每一步——
+                <em>包括失败</em>。
+              </p>
+              <div className="hero-cta reveal in">
+                <Link href="/journey" className="btn btn-primary">
+                  开始阅读 →
+                </Link>
+                <Link href="/about" className="btn btn-ghost">
+                  关于我
+                </Link>
+              </div>
+              <div className="hero-meta reveal in">
+                <span className="dot"></span>
+                <span className="t-meta">LAST UPDATE · 2026.05.03</span>
+              </div>
             </div>
-            <h1 className="hero-title reveal in">
-              <span className="star-mark entry" aria-hidden="true">
-                ✻
-              </span>
-              用 <span className="italic-em">AI</span>，<br />
-              把一个人 <span className="hero-slash">/</span> 变成一支团队。
-            </h1>
-            <p className="hero-sub reveal in">
-              零代码小白用 90 天造一人公司，公开记录每一步——
-              <em>包括失败</em>。
-            </p>
-            <div className="hero-cta reveal in">
-              <Link href="/journey" className="btn btn-primary">
-                开始阅读 →
-              </Link>
-              <Link href="/about" className="btn btn-ghost">
-                关于我
-              </Link>
-            </div>
-            <div className="hero-meta reveal in">
-              <span className="dot"></span>
-              <span className="t-meta">LAST UPDATE · 2026.05.03</span>
+            <div className="hero-art reveal in" aria-hidden="true">
+              <HeroIllustration />
             </div>
           </div>
         </div>
@@ -75,13 +87,16 @@ export default function Home() {
       {/* ======= WORK OVERVIEW ======= */}
       <section className="section">
         <div className="wrap">
-          <div className="section-head reveal">
+          <div className="section-head reveal section-head-iconed">
             <div className="lead">
-              <div className="t-eyebrow">// WORK · 04</div>
-              <h2 className="t-h2">在做的，能接的，做完的。</h2>
-              <p className="desc">
-                个人接单 + 一人公司 SoloOS 在跑的业务。每一项都是真实交付过的，不是简介。
-              </p>
+              <WorkIcon className="section-icon" />
+              <div>
+                <div className="t-eyebrow">// WORK · 04</div>
+                <h2 className="t-h2">在做的，能接的，做完的。</h2>
+                <p className="desc">
+                  个人接单 + 一人公司 SoloOS 在跑的业务。每一项都是真实交付过的，不是简介。
+                </p>
+              </div>
             </div>
             <Link href="/work" className="more">
               所有业务
@@ -141,13 +156,16 @@ export default function Home() {
       {/* ======= RESOURCES + PROMPTS ======= */}
       <section className="section">
         <div className="wrap">
-          <div className="section-head reveal">
+          <div className="section-head reveal section-head-iconed">
             <div className="lead">
-              <div className="t-eyebrow">// LIBRARY · 资源 + PROMPT</div>
-              <h2 className="t-h2">收的，写的，都在这里。</h2>
-              <p className="desc">
-                读到好东西就丢进 Resources，写好的 prompt 就丢进 Prompts。两个库都开源，可搜可筛可抄。
-              </p>
+              <LibraryIcon className="section-icon" />
+              <div>
+                <div className="t-eyebrow">// LIBRARY · 资源 + PROMPT</div>
+                <h2 className="t-h2">收的，写的，都在这里。</h2>
+                <p className="desc">
+                  读到好东西就丢进 Resources，写好的 prompt 就丢进 Prompts。两个库都开源，可搜可筛可抄。
+                </p>
+              </div>
             </div>
             <div style={{ display: "flex", gap: 16, alignItems: "flex-end" }}>
               <Link href="/resources" className="more">
@@ -216,15 +234,18 @@ export default function Home() {
       {/* ======= JOURNEY ======= */}
       <section className="section">
         <div className="wrap">
-          <div className="section-head reveal">
+          <div className="section-head reveal section-head-iconed">
             <div className="lead">
-              <div className="t-eyebrow">// JOURNEY · 90 DAYS</div>
-              <h2 className="t-h2">
-                <span className="italic-em">公开</span>记录每一步——包括失败。
-              </h2>
-              <p className="desc">
-                90 天裸辞日记。每周 2-3 篇。哪天卡住了、哪天赚到第一块钱、哪天差点放弃，都在这里。
-              </p>
+              <JourneyIcon className="section-icon" />
+              <div>
+                <div className="t-eyebrow">// JOURNEY · 90 DAYS</div>
+                <h2 className="t-h2">
+                  <span className="italic-em">公开</span>记录每一步——包括失败。
+                </h2>
+                <p className="desc">
+                  90 天裸辞日记。每周 2-3 篇。哪天卡住了、哪天赚到第一块钱、哪天差点放弃，都在这里。
+                </p>
+              </div>
             </div>
             <Link href="/journey" className="more">
               全部 {totalJourney} 篇
@@ -271,6 +292,10 @@ export default function Home() {
         <div className="wrap">
           <div className="contact-card reveal">
             <div className="contact-left">
+              <ContactIcon
+                className="section-icon"
+                style={{ marginBottom: 16 }}
+              />
               <div className="t-eyebrow">// CONTACT</div>
               <h2 className="t-h2">
                 想聊聊？或者
