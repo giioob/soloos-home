@@ -37,11 +37,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://soloos.cc"),
   title: "SoloOS · 用 AI 把一个人变成一支团队",
   description:
-    "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+    "正在用 AI 打造一人公司——90 天，全程公开。包括失败。",
   openGraph: {
     title: "SoloOS · 用 AI 把一个人变成一支团队",
     description:
-      "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+      "正在用 AI 打造一人公司——90 天，全程公开。包括失败。",
     url: "https://soloos.cc",
     siteName: "SoloOS",
     images: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "SoloOS · 用 AI 把一个人变成一支团队",
-    description: "零代码小白用 90 天造一人公司，公开记录每一步——包括失败。",
+    description: "正在用 AI 打造一人公司——90 天，全程公开。包括失败。",
     images: ["/me/underground-logo.png"],
   },
 };

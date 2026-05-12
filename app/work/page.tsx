@@ -53,7 +53,7 @@ const SKUS = [
 const FAQS = [
   {
     q: "可以远程合作吗？",
-    a: "诊断包和内容启动包都可以远程视频。陪跑包优先连云港和长三角线下见面，远程也能做，看具体情况。",
+    a: "诊断包和内容启动包都可以远程视频。陪跑包优先长三角及周边线下见面，远程也能做，看具体情况。",
   },
   {
     q: "如果效果不达预期能退款吗？",
@@ -124,7 +124,7 @@ export default function WorkPage() {
               <div className="t-eyebrow">// 信任背书</div>
               <h2 className="t-h2">凭什么相信我？</h2>
               <p className="desc">
-                {ARCHIVE_PROJECTS.length} 个文旅项目档案——连云港十年现场经验。
+                {ARCHIVE_PROJECTS.length} 个文旅项目档案——十年现场经验。
                 AI 是新工具，文旅是老本行。
               </p>
             </div>

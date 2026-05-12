@@ -58,7 +58,7 @@ export default function Home() {
                 把一个人 <span className="hero-slash">/</span> 变成一支团队。
               </h1>
               <p className="hero-sub reveal in">
-                零代码小白用 90 天造一人公司，公开记录每一步——
+                正在用 AI 打造一人公司——90 天，全程公开。
                 <em>包括失败</em>。
               </p>
               <div className="hero-cta reveal in">
@@ -171,7 +171,7 @@ export default function Home() {
                 我之前是<span className="italic-em">文旅人</span>。
               </h2>
               <p className="desc">
-                连云港十年文旅活动策划、执行、舞美、品牌——
+                十年文旅活动策划、执行、舞美、品牌——
                 {totalArchive} 个项目档案。SoloOS 之前的我。
               </p>
             </div>

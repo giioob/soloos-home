@@ -8,7 +8,7 @@ import ArchiveCategoryIcon from "./ArchiveCategoryIcon";
 export const metadata: Metadata = {
   title: "项目档案 · 一个人的十年文旅履历 · SoloOS",
   description:
-    "任弘 / 连云港。20+ 个文旅活动、舞美工程、品牌策划项目档案。也是 SoloOS 之前的我。",
+    "SoloOS 之前的我。20+ 个文旅活动、舞美工程、品牌策划项目档案。",
 };
 
 export default function ArchivePage() {
@@ -24,7 +24,7 @@ export default function ArchivePage() {
         <div className={styles.introInner}>
           <div className={styles.introEyebrow}>// 关于这份档案</div>
           <p className={styles.introLead}>
-            连云港 · <em>十年</em> · 文旅活动策划、执行、舞美与品牌的项目档案。
+            <em>十年</em> · 文旅活动策划、执行、舞美与品牌的项目档案。
             <br />
             也是 SoloOS 之前的我。
           </p>
@@ -36,10 +36,6 @@ export default function ArchivePage() {
             <div className={styles.introStat}>
               <dt>时间跨度</dt>
               <dd>2015 — 2025</dd>
-            </div>
-            <div className={styles.introStat}>
-              <dt>主战场</dt>
-              <dd>连云港</dd>
             </div>
           </dl>
         </div>

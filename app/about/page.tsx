@@ -11,9 +11,9 @@ export default function AboutPage() {
       <header className="page-hero">
         <div className="wrap">
           <div className="t-eyebrow">// ABOUT</div>
-          <h1 className="t-h1">关于 Hong &amp; SoloOS</h1>
+          <h1 className="t-h1">关于 SoloOS</h1>
           <p>
-            零代码小白。正在裸辞 90 天用 AI 打造一人公司，公开记录每一步——包括失败。
+            正在用 AI 打造一人公司——90 天，全程公开。包括失败。
           </p>
         </div>
       </header>
