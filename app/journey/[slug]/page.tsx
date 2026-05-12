@@ -7,8 +7,10 @@ import {
   getAllDocs,
   getAllSlugs,
   getDocBySlug,
+  extractToc,
   type JourneyMeta,
 } from "../../../lib/mdx";
+import TocSidebar from "../../../components/TocSidebar";
 
 // 让 Next 在构建时为每篇文章生成一个静态页面（SSG）
 export async function generateStaticParams() {
@@ -119,6 +121,9 @@ export default async function JourneyDetailPage({
   const newer = idx > 0 ? all[idx - 1] : null;       // 倒序排列下，前一项是更新的
   const older = idx < all.length - 1 ? all[idx + 1] : null;
 
+  // 提取目录（h2 + h3）传给左侧 TOC
+  const toc = extractToc(doc.content);
+
   return (
     <article className="spotlight-host">
       {/* 文章 Hero */}
@@ -156,19 +161,27 @@ export default async function JourneyDetailPage({
         </div>
       </header>
 
-      {/* 正文 */}
+      {/* 正文 + 左侧 TOC（3 列布局，窄屏自动塌陷） */}
       <section className="section" style={{ position: "relative", zIndex: 2 }}>
-        <div className="wrap-r">
-          <MDXRemote
-            source={doc.content}
-            components={mdxComponents}
-            options={{
-              mdxOptions: {
-                remarkPlugins: [remarkGfm],
-                rehypePlugins: [rehypeSlug],
-              },
-            }}
-          />
+        <div className="article-layout">
+          <aside>
+            <TocSidebar items={toc} />
+          </aside>
+          <div className="article-main">
+            <div className="wrap-r">
+              <MDXRemote
+                source={doc.content}
+                components={mdxComponents}
+                options={{
+                  mdxOptions: {
+                    remarkPlugins: [remarkGfm],
+                    rehypePlugins: [rehypeSlug],
+                  },
+                }}
+              />
+            </div>
+          </div>
+          <div className="article-aside" aria-hidden />
         </div>
       </section>
 

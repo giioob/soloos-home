@@ -14,10 +14,12 @@ export default function Nav() {
     setMenuOpen(false);
   }, [pathname]);
 
+
   // 把 pathname 映射成 data-link 关键字（首页不高亮任何 nav 项）
   const active = (() => {
     if (pathname.startsWith("/work")) return "work";
     if (pathname.startsWith("/journey")) return "journey";
+    if (pathname.startsWith("/archive")) return "archive";
     if (pathname.startsWith("/resources")) return "resources";
     if (pathname.startsWith("/prompts")) return "prompts";
     if (pathname.startsWith("/about")) return "about";
@@ -39,11 +41,12 @@ export default function Nav() {
 
         {/* 桌面端横排链接 */}
         <div className="nav-links">
-          {link("/work", "work", "Work")}
-          {link("/journey", "journey", "Journey")}
-          {link("/resources", "resources", "Resources")}
+          {link("/work", "work", "业务")}
+          {link("/archive", "archive", "项目")}
+          {link("/journey", "journey", "日记")}
+          {link("/resources", "resources", "资源")}
           {link("/prompts", "prompts", "Prompts")}
-          {link("/about", "about", "About")}
+          {link("/about", "about", "关于")}
         </div>
 
         <div className="nav-right">
@@ -74,11 +77,12 @@ export default function Nav() {
       {/* 移动端展开菜单（用 max-height 动画，干净） */}
       <div className={`nav-mobile-panel ${menuOpen ? "open" : ""}`}>
         <div className="nav-mobile-inner">
-          {link("/work", "work", "Work")}
-          {link("/journey", "journey", "Journey")}
-          {link("/resources", "resources", "Resources")}
+          {link("/work", "work", "业务")}
+          {link("/archive", "archive", "项目")}
+          {link("/journey", "journey", "日记")}
+          {link("/resources", "resources", "资源")}
           {link("/prompts", "prompts", "Prompts")}
-          {link("/about", "about", "About")}
+          {link("/about", "about", "关于")}
           <Link href="/#contact" className="nav-mobile-contact">
             联系 →
           </Link>

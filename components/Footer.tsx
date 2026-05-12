@@ -17,11 +17,12 @@ export default function Footer() {
           <div>
             <h4>站点</h4>
             <ul>
-              <li><Link href="/work">Work</Link></li>
-              <li><Link href="/journey">Journey</Link></li>
-              <li><Link href="/resources">Resources</Link></li>
+              <li><Link href="/work">业务</Link></li>
+              <li><Link href="/journey">日记</Link></li>
+              <li><Link href="/archive">项目</Link></li>
+              <li><Link href="/resources">资源</Link></li>
               <li><Link href="/prompts">Prompts</Link></li>
-              <li><Link href="/about">About</Link></li>
+              <li><Link href="/about">关于</Link></li>
             </ul>
           </div>
           <div>

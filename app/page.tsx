@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllDocs, type JourneyMeta, type PromptMeta } from "../lib/mdx";
 import { getAllResources } from "../lib/resources";
+import { ARCHIVE_PROJECTS } from "./archive/projects";
 import Image from "next/image";
 import {
   HeroIllustration,
@@ -32,6 +33,12 @@ export default function Home() {
   const totalJourney = getAllDocs<JourneyMeta>("journey").length;
   const totalPrompts = getAllDocs<PromptMeta>("prompts").length;
   const totalResources = getAllResources().length;
+  const totalArchive = ARCHIVE_PROJECTS.length;
+
+  // 首页 Archive 板块：取 3 个有真图的 highlight 项目作信任背书
+  const featuredArchive = ARCHIVE_PROJECTS.filter(
+    (p) => p.highlight && p.cover
+  ).slice(0, 3);
 
   return (
     <>
@@ -102,9 +109,9 @@ export default function Home() {
               <WorkIcon className="section-icon" />
               <div>
                 <div className="t-eyebrow">// WORK · 04</div>
-                <h2 className="t-h2">在做的，能接的，做完的。</h2>
+                <h2 className="t-h2">用 AI 帮你做 IP 和内容</h2>
                 <p className="desc">
-                  个人接单 + 一人公司 SoloOS 在跑的业务。每一项都是真实交付过的，不是简介。
+                  三档服务包，明码标价。专做文旅圈老板。
                 </p>
               </div>
             </div>
@@ -115,50 +122,97 @@ export default function Home() {
 
           <div className="grid-4 reveal">
             <Link href="/work" className="card">
-              <div className="card-eyebrow t-eyebrow">// 案例 / 已完成</div>
-              <h3>给 200 人小红书账号搭 AI 工作流</h3>
-              <p>
-                一周内把发文从 3 篇/周拉到 12 篇/周，月增粉 2.4k。用的是 Claude
-                + 自家 prompt 模板。
-              </p>
+              <div className="card-eyebrow t-eyebrow">// 入门</div>
+              <h3>冷启动诊断包</h3>
+              <p>90 分钟现场诊断，AI 出 5 条标题、1 张封面图、IP 定位文档。</p>
               <div className="card-foot">
-                <span>运营 · 私域</span>
-                <span>2026.04</span>
+                <span>¥588</span>
+                <span>90 分钟</span>
               </div>
             </Link>
             <Link href="/work" className="card">
-              <div className="card-eyebrow t-eyebrow">// 服务 / 可承接</div>
-              <h3>AI 工作流定制</h3>
-              <p>
-                诊断现有手工流程 → 拆出 3-5 个可 AI 化节点 → 用 Claude/n8n 落地。起步价 ¥8k。
-              </p>
+              <div className="card-eyebrow t-eyebrow">// 主推</div>
+              <h3>内容启动包</h3>
+              <p>1 周搭账号 + 10 条 AI 内容 + 一份 SOP 文档。</p>
               <div className="card-foot">
-                <span>2 周交付</span>
-                <span>5 个名额/月</span>
+                <span>¥3,888</span>
+                <span>1 周</span>
               </div>
             </Link>
             <Link href="/work" className="card">
-              <div className="card-eyebrow t-eyebrow">// 服务 / 可承接</div>
-              <h3>AI 培训 · 团队入门</h3>
-              <p>
-                给 5-30 人团队的 1 天工作坊。从 prompt 写法到把日常工作搬进 Claude，按角色分组练习。
-              </p>
+              <div className="card-eyebrow t-eyebrow">// 深度</div>
+              <h3>陪跑包</h3>
+              <p>30 天 30 条内容 + 4 次复盘会 + 完整 AI 工具包。</p>
               <div className="card-foot">
-                <span>线下/线上</span>
-                <span>¥1.2w 起</span>
+                <span>¥18,888</span>
+                <span>30 天</span>
               </div>
             </Link>
-            <Link href="/work" className="card">
-              <div className="card-eyebrow t-eyebrow">// 案例 / 已完成</div>
-              <h3>给一家民宿做了 AI 客服</h3>
-              <p>
-                30 个常见问题 + 预订规则塞进知识库，夜班咨询响应从 8 小时压到 30 秒。
-              </p>
+            <Link href="/work" className="card accent-card">
+              <div className="card-eyebrow t-eyebrow">// 先聊聊</div>
+              <h3>看看适不适合？</h3>
+              <p>不确定选哪档？加微信备注「来自 soloos.cc」，先简单聊聊你的情况。</p>
               <div className="card-foot">
-                <span>本地服务</span>
-                <span>2026.03</span>
+                <span>免费</span>
+                <span>了解 →</span>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ======= ARCHIVE · 信任背书 ======= */}
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head reveal">
+            <div className="lead">
+              <div className="t-eyebrow">// ARCHIVE · {totalArchive}</div>
+              <h2 className="t-h2">
+                我之前是<span className="italic-em">文旅人</span>。
+              </h2>
+              <p className="desc">
+                连云港十年文旅活动策划、执行、舞美、品牌——
+                {totalArchive} 个项目档案。SoloOS 之前的我。
+              </p>
+            </div>
+            <Link href="/archive" className="more">
+              全部 {totalArchive} 项目
+            </Link>
+          </div>
+
+          <div className="grid-3 reveal" style={{ marginTop: "var(--s-5)" }}>
+            {featuredArchive.map((p) => (
+              <Link
+                href={`/archive/${p.slug}`}
+                key={p.slug}
+                className="card"
+                style={{ padding: 0, overflow: "hidden" }}
+              >
+                {p.cover && (
+                  <div
+                    style={{
+                      backgroundImage: `url(${p.cover})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      aspectRatio: "4 / 3",
+                      width: "100%",
+                    }}
+                    aria-hidden
+                  />
+                )}
+                <div style={{ padding: "var(--s-4)" }}>
+                  <div className="card-eyebrow t-eyebrow">
+                    // {p.category} · {p.year}
+                  </div>
+                  <h3>{p.title}</h3>
+                  <p>{p.pitch}</p>
+                  <div className="card-foot">
+                    <span>{p.subtitle ?? p.client}</span>
+                    <span>查看 →</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

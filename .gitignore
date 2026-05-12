@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright debug artifacts（仅排除仓库根目录的 PNG，不影响 public/）
+.playwright-mcp/
+/*.png
+
+# Claude local settings
+.claude/

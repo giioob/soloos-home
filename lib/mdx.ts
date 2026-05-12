@@ -14,6 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import GithubSlugger from "github-slugger";
 
 const CONTENT_ROOT = path.join(process.cwd(), "content");
 
@@ -122,6 +123,44 @@ export function getDocBySlug<TMeta>(
     content,
     readingMin: Math.max(1, Math.round(readingTime(content).minutes)),
   };
+}
+
+/** 文章目录里的一项（h2 / h3） */
+export type TocItem = {
+  depth: 2 | 3;
+  text: string;
+  id: string;
+};
+
+/**
+ * 从 markdown 正文里扫出 h2 / h3 标题，生成与 rehype-slug 一致的 id。
+ * 用 github-slugger 保证锚点 id 和正文 <h2 id="..."> 完全对得上。
+ * 跳过 ``` 代码块里的伪标题。
+ */
+export function extractToc(content: string): TocItem[] {
+  const slugger = new GithubSlugger();
+  const lines = content.split("\n");
+  const toc: TocItem[] = [];
+  let inCodeBlock = false;
+
+  for (const line of lines) {
+    if (line.startsWith("```")) {
+      inCodeBlock = !inCodeBlock;
+      continue;
+    }
+    if (inCodeBlock) continue;
+
+    const m = line.match(/^(#{2,3})\s+(.+?)\s*$/);
+    if (!m) continue;
+
+    const depth = m[1].length as 2 | 3;
+    const text = m[2].replace(/[*_`]/g, "").trim();
+    if (!text) continue;
+
+    toc.push({ depth, text, id: slugger.slug(text) });
+  }
+
+  return toc;
 }
 
 /** 列出某个子目录下所有 slug —— 用于生成 generateStaticParams */

@@ -70,5 +70,14 @@
     "tags": ["claude", "中文教程"],
     "note": "中文 Claude 教程站。这个网站的视觉架构对我们影响很大——内容站怎么做，他们做了好的范本。",
     "added": "2026-05-03"
+  },
+  {
+    "title": "Remotion Lab · 用 React 写视频",
+    "url": "https://remotionlab.com/docs",
+    "source": "remotionlab.com",
+    "category": "工具文档",
+    "tags": ["remotion", "视频", "react"],
+    "note": "用代码做视频的入门站。零代码小白看不懂代码也能感受到——视频未来会被'生成'，不是被'剪'。",
+    "added": "2026-05-11"
   }
 ]

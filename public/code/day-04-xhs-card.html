@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+  小红书封面 V1 · Day 03 主题
+  尺寸：750 × 1000（小红书原生封面 3:4 竖图）
+  改字：在 <body> 里直接改文字内容，保存后浏览器刷新即可
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>XHS Card · Day 03</title>
+  <style>
+    /* ============ 第 1 段：重置和画布 ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      /* 字体：macOS 自动用苹方，Windows 用微软雅黑 */
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      /* 居中显示卡片 */
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh; background: #2B2622;
+    }
+
+    /* ============ 第 2 段：卡片本身（这就是你截图要的部分）============ */
+    .card {
+      width: 750px; height: 1000px;
+      background: #F4EFE6;            /* SoloOS 品牌米黄 */
+      color: #2B2622;                  /* SoloOS 品牌深棕 */
+      padding: 80px 70px;
+      display: flex; flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ============ 第 3 段：顶部小标签 ============ */
+    .eyebrow {
+      font-size: 22px;
+      letter-spacing: 4px;             /* 字间距撑开，更专业 */
+      color: #8B7E72;                  /* 浅棕，弱化 */
+      margin-bottom: 60px;
+    }
+    .eyebrow .dot { color: #D97757; }  /* 中间小圆点用品牌橘红 */
+
+    /* ============ 第 4 段：大标题（占视觉 60%）============ */
+    .title {
+      font-size: 78px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -2px;
+    }
+    .title .nowrap {
+      /* V2 修复："是" 和 "拒绝我" 绑定为不可拆分组合，永远在同一行 */
+      white-space: nowrap;
+    }
+    .title .accent {
+      /* 重点词加底色高亮 */
+      background: #D97757;
+      color: #F4EFE6;
+      padding: 4px 16px;
+      border-radius: 8px;
+      display: inline-block;
+      transform: rotate(-2deg);        /* 略微倾斜，更有手写感 */
+    }
+
+    /* ============ 第 5 段：副标题/小字 ============ */
+    .subtitle {
+      margin-top: 30px;            /* V2：从 50 改到 30，标题副标题更紧凑 */
+      font-size: 26px;
+      color: #5C5048;
+      line-height: 1.6;
+    }
+
+    /* V2 新增：左上角 03/100 大数字标识 */
+    .day-num {
+      position: absolute;
+      top: 40px; right: 70px;
+      font-size: 36px;
+      font-weight: 800;
+      color: #D97757;
+      letter-spacing: 1px;
+    }
+    .day-num .total { color: #8B7E72; font-weight: 500; }
+
+    /* ============ 第 6 段：底部签名 ============ */
+    .footer {
+      margin-top: auto;                /* 自动顶到底部 */
+      display: flex; justify-content: space-between; align-items: flex-end;
+      padding-top: 40px;
+      border-top: 2px solid #D8CFBE;   /* 一条细线分隔 */
+    }
+    .brand { font-size: 28px; font-weight: 700; }
+    .brand .at { color: #D97757; }
+    .url { font-size: 20px; color: #8B7E72; }
+
+    /* ============ 第 7 段：装饰元素（右上角橘红色块）============ */
+    .deco {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: #D97757;
+      opacity: 0.15;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 卡片主体（HTML 结构就是嵌套的标签，像俄罗斯套娃） -->
+  <div class="card">
+    <div class="deco"></div>
+
+    <!-- V2 新增：右上角 03/100 大数字（视觉锚点） -->
+    <div class="day-num">03<span class="total">/100</span></div>
+
+    <div class="eyebrow">DAY 03 <span class="dot">·</span> 100 天裸辞实验</div>
+
+    <h1 class="title">
+      我让 AI<br/>
+      做我的合伙人<br/>
+      它做的第一件事<br/>
+      <span class="nowrap">是<span class="accent">拒绝我</span></span>
+    </h1>
+
+    <p class="subtitle">
+      「AI 工具」和「AI 合伙人」<br/>
+      中间隔着一座山。<br/>
+      今天我第一次看清那座山。
+    </p>
+
+    <div class="footer">
+      <div class="brand"><span class="at">@</span>SoloOS</div>
+      <div class="url">soloos.cc / journey / day-03</div>
+    </div>
+  </div>
+
+</body>
+</html>
